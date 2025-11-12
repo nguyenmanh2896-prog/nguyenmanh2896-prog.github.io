@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Recommendation Engine</title>
+  </head>
+  <body>
+    <h1>🧪 Test Recommendation Engine</h1>
+    <button onclick="testEngine()">Bắt Đầu Test</button>
+    <div id="results"></div>
+
+    <script src="./backend/recommendation-engine.js"></script>
+    <script>
+      async function testEngine() {
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = "🔄 Đang test...";
+
+        try {
+          // Test 1: Khởi tạo
+          await recommendationEngine.initialize();
+          resultsDiv.innerHTML += "<br>✅ Khởi tạo thành công";
+
+          // Test 2: Lấy sản phẩm mẫu
+          const samples = recommendationEngine.getSampleProducts(3);
+          resultsDiv.innerHTML += `<br>✅ Lấy ${samples.length} sản phẩm mẫu`;
+
+          // Test 3: Đề xuất
+          if (samples.length > 0) {
+            const testProductId = samples[0].id;
+            const recommendations =
+              await recommendationEngine.getRecommendations(
+                testProductId,
+                "hybrid",
+                2
+              );
+            resultsDiv.innerHTML += `<br>✅ Đề xuất thành công: ${recommendations.length} kết quả`;
+
+            // Hiển thị kết quả
+            recommendations.forEach((rec, index) => {
+              resultsDiv.innerHTML += `
+                            <br>🎯 ${index + 1}. ${rec.product.title_clean}
+                            <br>   📊 Score: ${rec.score.toFixed(3)}
+                            <br>   📝 Reason: ${rec.reason}
+                        `;
+            });
+          }
+
+          resultsDiv.innerHTML += "<br><br>🎉 TẤT CẢ TEST THÀNH CÔNG!";
+        } catch (error) {
+          resultsDiv.innerHTML += `<br>❌ Lỗi: ${error.message}`;
+          console.error("Test Error:", error);
+        }
+      }
+    </script>
+  </body>
+</html>

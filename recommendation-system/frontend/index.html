@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ Thống Đề Xuất Sản Phẩm</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <h1>HỆ THỐNG ĐỀ XUẤT SẢN PHẨM</h1>
+        <p>Ứng dụng AI đề xuất sản phẩm phù hợp nhất với bạn</p>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Search Section -->
+        <section class="search-section">
+          <div class="search-card">
+            <h2>🔍 Tìm kiếm sản phẩm</h2>
+            <form id="recommendation-form" class="search-form">
+              <div class="form-group">
+                <label for="product-id">Nhập Product ID:</label>
+                <input
+                  type="text"
+                  id="product-id"
+                  placeholder="Ví dụ: B001234567"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="method">Phương pháp đề xuất:</label>
+                <select id="method">
+                  <option value="hybrid">🤖 Hybrid (Tốt nhất)</option>
+                  <option value="content">📝 Content-Based</option>
+                  <option value="collaborative">👥 Collaborative</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn-primary">
+                <span class="btn-text">🎯 Nhận Đề Xuất</span>
+                <span class="btn-loading" style="display: none"
+                  >⏳ Đang xử lý...</span
+                >
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <!-- Sample Products -->
+        <section class="samples-section">
+          <h3>📦 Sản phẩm mẫu (Click để test):</h3>
+          <div id="sample-products" class="sample-grid">
+            <!-- Sản phẩm mẫu sẽ được load bằng JavaScript -->
+          </div>
+        </section>
+
+        <!-- Results Section -->
+        <section
+          id="results-section"
+          class="results-section"
+          style="display: none"
+        >
+          <div class="results-card">
+            <h2>🤖 Kết Quả Đề Xuất</h2>
+            <div id="original-product" class="original-product"></div>
+            <div id="recommendations-list" class="recommendations-grid">
+              <!-- Kết quả đề xuất sẽ hiện ở đây -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Loading -->
+        <div id="loading" class="loading" style="display: none">
+          <div class="spinner"></div>
+          <p>Đang phân tích và đề xuất...</p>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>
+          Hệ thống đề xuất thông minh - Đồ án E-commerce Recommendation System
+        </p>
+      </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../backend/recommendation-engine.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
